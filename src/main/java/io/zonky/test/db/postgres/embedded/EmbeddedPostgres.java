@@ -795,7 +795,7 @@ public class EmbeddedPostgres implements Closeable
                 IOUtils.copy(pgArchiveData, baos);
                 pgArchiveData.close();
 
-                String pgDigest = Hex.encodeHex(pgArchiveData.getMessageDigest().digest());
+                String pgDigest = new String(Hex.encodeHex(pgArchiveData.getMessageDigest().digest()));
                 File workingDirectory = Optional.ofNullable(overrideWorkingDirectory).orElse(getWorkingDirectory());
                 pgDir = new File(workingDirectory, String.format("PG-%s", pgDigest));
 
